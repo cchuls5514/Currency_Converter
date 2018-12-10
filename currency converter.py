@@ -15,3 +15,16 @@ amount = float(raw_input("Amount: "))
     is a float so you do not have to add "".
     """
 url= "https://api.exchangeratesapi.io/latest?base=" + base
+
+""" This is the URL for the API with live Exchange rates. This is where the
+    conversion data will be pulled from.
+    """
+
+""" the next lines take the data from the url an make it readable thru python by translating
+    the text into a readable format."""
+response = requests.get(url) 
+data = response.text 
+parsed = json.loads(data) 
+rates = parsed["rates"]
+
+
