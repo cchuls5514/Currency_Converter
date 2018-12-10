@@ -20,11 +20,19 @@ url= "https://api.exchangeratesapi.io/latest?base=" + base
     conversion data will be pulled from.
     """
 
-""" the next lines take the data from the url an make it readable thru python by translating
-    the text into a readable format."""
+    """" the next lines take the data from the url an make it readable thru python by translating
+    the text into a readable format.
+    """
 response = requests.get(url) 
 data = response.text 
 parsed = json.loads(data) 
 rates = parsed["rates"]
 
-
+""" the following for loop will take the currency rate given by user from url and multipy by the
+    currency being converted to and return the exact and current amount of the day.
+    """
+for currency, rate in rates.items():
+    if currency == to:
+        conversion = rate * amount
+        print("1", base, "=", currency, rate)
+        print(amount, base, "=", currency, conversion)
